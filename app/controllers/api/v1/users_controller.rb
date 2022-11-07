@@ -2,8 +2,7 @@ class Api::V1::UsersController < ApplicationController
  before_action :set_user, except: %i[index create]
 
   def index
-    users = User.all
-    render json: users
+    send_data User.to_csv, filename: "users-#{Date.today}.csv"
   end
 
   def show
